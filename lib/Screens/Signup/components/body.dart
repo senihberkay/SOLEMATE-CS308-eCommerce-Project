@@ -52,6 +52,7 @@ class Body extends StatelessWidget {
                 );
               },
             ),
+            /*
             OrDivider(),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -70,6 +71,7 @@ class Body extends StatelessWidget {
                 ),
               ],
             )
+            */
           ],
         ),
       ),
