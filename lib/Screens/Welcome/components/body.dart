@@ -54,6 +54,28 @@ class Body extends StatelessWidget {
                 );
               },
             ),
+            RoundedButton(
+              text: "CONTINUE ANONYMOUSLY",
+              color: Color.fromARGB(255, 24, 5, 77),
+              textColor: Colors.white,
+              press: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      //return HomeScreen(); e çevir
+                      return LoginScreen();
+                    },
+                  ),
+                );
+              },
+
+              /*
+              press: () async {
+                await _auth.signInAnon();
+              }
+              */
+            ),
           ],
         ),
       ),
