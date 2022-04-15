@@ -3,7 +3,7 @@ import 'package:flutter_auth/components/custom_surfix_icon.dart';
 import 'package:flutter_auth/components/default_button.dart';
 import 'package:flutter_auth/components/form_error.dart';
 import 'package:flutter_auth/screens/complete_profile/complete_profile_screen.dart';
-
+import 'package:firebase_auth/firebase_auth.dart';
 import '../../../constants.dart';
 import '../../../size_config.dart';
 
@@ -52,6 +52,7 @@ class _SignUpFormState extends State<SignUpForm> {
             press: () {
               if (_formKey.currentState!.validate()) {
                 _formKey.currentState!.save();
+                //FirebaseAuth.instance.createUserWithEmailAndPassword(email: email, password: password);
                 // if all are valid then go to success screen
                 Navigator.pushNamed(context, CompleteProfileScreen.routeName);
               }

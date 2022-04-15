@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "485606607237",
+    "project_id": "solemate-5534d",
+    "storage_bucket": "solemate-5534d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:485606607237:android:07ec58d89bc83180f25cec",
+        "android_client_info": {
+          "package_name": "com.example.soulmate"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "485606607237-7pmcpolcma8rrs2bvdfeptl6kda34ajn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDVQvAyAJEqVJYVh_AQ4chACHN9U3sbfmg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "485606607237-7pmcpolcma8rrs2bvdfeptl6kda34ajn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
