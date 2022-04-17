@@ -8,6 +8,7 @@ import 'package:flutter_auth/screens/login_success/login_success_screen.dart';
 import '../../../components/default_button.dart';
 import '../../../constants.dart';
 import '../../../size_config.dart';
+import '../../../Services/auth.dart';
 
 class SignForm extends StatefulWidget {
   @override
@@ -15,6 +16,7 @@ class SignForm extends StatefulWidget {
 }
 
 class _SignFormState extends State<SignForm> {
+  AuthService _authService = AuthService();
   final _formKey = GlobalKey<FormState>();
   String? email;
   String? password;
@@ -73,6 +75,7 @@ class _SignFormState extends State<SignForm> {
           DefaultButton(
             text: "Continue",
             press: () {
+              //_authService.signIn(email, password); i dont know what parameters to give here
               if (_formKey.currentState!.validate()) {
                 _formKey.currentState!.save();
                 // if all are valid then go to success screen
