@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/components/custom_surfix_icon.dart';
 import 'package:flutter_auth/components/form_error.dart';
@@ -16,6 +17,16 @@ class SignForm extends StatefulWidget {
 }
 
 class _SignFormState extends State<SignForm> {
+  
+  String mail = "";
+  String pass = "";
+  String _message = "";
+  int failLogin = 0;
+  bool deactivated = false;
+  bool already = false;
+  dynamic data;
+
+  FirebaseAuth auth = FirebaseAuth.instance;
   AuthService _authService = AuthService();
   final _formKey = GlobalKey<FormState>();
   String? email;
@@ -35,6 +46,44 @@ class _SignFormState extends State<SignForm> {
       setState(() {
         errors.remove(error);
       });
+  }
+
+  void setMessage(String msg) {
+    setState(() {
+      _message = msg;
+    });
+  }
+
+  Future<void> signupUser() async {
+    Navigator.pushNamed(context, '/register');
+  }
+
+
+  Future<void> loginUser() async {
+    try {
+      UserCredential userCredential = await auth.signInWithEmailAndPassword(email: mail, password: pass);
+      if (userCredential.toString().isNotEmpty) {
+       
+        User? currentUser = await auth.currentUser;
+        if (currentUser != null) {
+          await currentUser.reload();
+        }
+
+      }
+    } on FirebaseAuthException catch (e) {
+      if (e.code == "user-not-found") {
+        setMessage("No user exists with these credentials!");
+        failLogin++;
+        if (failLogin == 3) {
+          setMessage("You have tried to login with non-existing credentials 3 times. Redirecting you to the register page.");
+          await Future.delayed(const Duration(seconds: 5), (){});
+          signupUser();
+        }
+      }
+      else if (e.code == "wrong-password"){
+        setMessage("Wrong Password!");
+      }
+    }
   }
 
   @override
@@ -75,10 +124,10 @@ class _SignFormState extends State<SignForm> {
           DefaultButton(
             text: "Continue",
             press: () {
-              //_authService.signIn(email, password); i dont know what parameters to give here
               if (_formKey.currentState!.validate()) {
                 _formKey.currentState!.save();
                 // if all are valid then go to success screen
+                loginUser();
                 KeyboardUtil.hideKeyboard(context);
                 Navigator.pushNamed(context, LoginSuccessScreen.routeName);
               }

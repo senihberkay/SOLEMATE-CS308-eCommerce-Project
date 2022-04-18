@@ -10,11 +10,11 @@ class Categories extends StatelessWidget {
       {"icon": "assets/icons/Flash Icon.svg", "text": "Flash Deal"},
       {"icon": "assets/icons/Bill Icon.svg", "text": "Bill"},
       {"icon": "assets/icons/Sneakers Icon.svg", "text": "Sneakers"},
-      {"icon": "assets/icons/Gift Icon.svg", "text": "Daily Gift"},
+      //{"icon": "assets/icons/Gift Icon.svg", "text": "Daily Gift"},
       {"icon": "assets/icons/Discover.svg", "text": "More"},
     ];
     return Padding(
-      padding: EdgeInsets.all(getProportionateScreenWidth(20)),
+      padding: EdgeInsets.all(getProportionateScreenWidth(30)),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -47,7 +47,7 @@ class CategoryCard extends StatelessWidget {
     return GestureDetector(
       onTap: press,
       child: SizedBox(
-        width: getProportionateScreenWidth(55),
+        width: getProportionateScreenWidth(60),
         child: Column(
           children: [
             Container(
@@ -61,7 +61,7 @@ class CategoryCard extends StatelessWidget {
               child: SvgPicture.asset(icon!),
             ),
             const SizedBox(height: 5),
-            Text(text!, textAlign: TextAlign.center)
+            Text(text!, textAlign: TextAlign.center, ),
           ],
         ),
       ),
