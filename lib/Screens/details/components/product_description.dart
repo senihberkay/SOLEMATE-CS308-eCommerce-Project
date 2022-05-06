@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_auth/models/Product.dart';
+import 'package:flutter_auth/Screens/details/details_screen.dart';
 
 import '../../../constants.dart';
 import '../../../size_config.dart';
@@ -65,7 +66,9 @@ class ProductDescription extends StatelessWidget {
             vertical: 10,
           ),
           child: GestureDetector(
-            onTap: () {},
+            onTap: () {
+              Navigator.pushNamed(context, DetailsScreen.routeName);
+            },
             child: Row(
               children: [
                 Text(

@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_auth/screens/home/home_screen.dart';
 // import 'package:flutter_auth/screens/profile/profile_screen.dart'; // simdilik
 
+import '../Screens/profile/profile_screen.dart';
 import '../constants.dart';
 import '../enums.dart';
 
@@ -63,9 +64,9 @@ class CustomBottomNavBar extends StatelessWidget {
                       ? kPrimaryColor
                       : inActiveIconColor,
                 ),
-                // onPressed: () =>
-                //     Navigator.pushNamed(context, ProfileScreen.routeName),
-                onPressed: () {}, // simdilik üstteki comment kısmını ac
+                onPressed: () =>
+                Navigator.pushNamed(context, ProfileScreen.routeName),
+                
               ),
             ],
           )),

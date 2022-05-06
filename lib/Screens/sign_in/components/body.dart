@@ -52,7 +52,7 @@ class Body extends StatelessWidget {
                 // ),
                 SizedBox(height: getProportionateScreenHeight(20)),
                 ContiuneAnonTExt(),
-                SizedBox(height: SizeConfig.screenHeight * 0.15),
+                SizedBox(height: SizeConfig.screenHeight * 0.10),
                 NoAccountText(),
               ],
             ),

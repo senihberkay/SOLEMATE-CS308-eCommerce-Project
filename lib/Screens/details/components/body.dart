@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_auth/components/default_button.dart';
 import 'package:flutter_auth/models/Product.dart';
 import 'package:flutter_auth/size_config.dart';
+import 'package:flutter_auth/Screens/details/details_screen.dart';
 
 import 'color_dots.dart';
 import 'product_description.dart';
@@ -25,6 +26,7 @@ class Body extends StatelessWidget {
               ProductDescription(
                 product: product,
                 pressOnSeeMore: () {},
+                //product description returns null, fix it
               ),
               TopRoundedContainer(
                 color: Color(0xFFF6F7F9),
