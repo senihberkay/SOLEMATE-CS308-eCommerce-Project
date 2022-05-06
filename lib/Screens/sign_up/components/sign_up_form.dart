@@ -6,6 +6,7 @@ import 'package:flutter_auth/screens/complete_profile/complete_profile_screen.da
 import 'package:firebase_auth/firebase_auth.dart';
 import '../../../constants.dart';
 import '../../../size_config.dart';
+import '../../../Services/auth.dart';
 
 class SignUpForm extends StatefulWidget {
   @override
@@ -19,6 +20,8 @@ class _SignUpFormState extends State<SignUpForm> {
   String? conform_password;
   bool remember = false;
   final List<String?> errors = [];
+
+  final _authService = AuthService();
 
   void addError({String? error}) {
     if (!errors.contains(error))
@@ -54,6 +57,8 @@ class _SignUpFormState extends State<SignUpForm> {
                 _formKey.currentState!.save();
                 //FirebaseAuth.instance.createUserWithEmailAndPassword(email: email, password: password);
                 // if all are valid then go to success screen
+
+                _authService.registerUser(email, password);
                 Navigator.pushNamed(context, CompleteProfileScreen.routeName);
               }
             },
