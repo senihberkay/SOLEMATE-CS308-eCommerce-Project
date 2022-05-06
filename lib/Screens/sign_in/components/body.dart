@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_auth/components/continue_anon_text.dart';
 import 'package:flutter_auth/components/no_account_text.dart';
 import 'package:flutter_auth/components/socal_card.dart';
 import '../../../size_config.dart';
@@ -31,7 +32,7 @@ class Body extends StatelessWidget {
                 ),
                 SizedBox(height: SizeConfig.screenHeight * 0.08),
                 SignForm(),
-                SizedBox(height: SizeConfig.screenHeight * 0.08),
+                SizedBox(height: SizeConfig.screenHeight * 0.005),
                 // Row(
                 //   mainAxisAlignment: MainAxisAlignment.center,
                 //   children: [
@@ -50,6 +51,8 @@ class Body extends StatelessWidget {
                 //   ],
                 // ),
                 SizedBox(height: getProportionateScreenHeight(20)),
+                ContiuneAnonTExt(),
+                SizedBox(height: SizeConfig.screenHeight * 0.15),
                 NoAccountText(),
               ],
             ),

@@ -1,3 +1,4 @@
+/*
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/components/rounded_icon_btn.dart';
 import 'package:flutter_auth/models/Product.dart';
@@ -78,3 +79,4 @@ class ColorDot extends StatelessWidget {
     );
   }
 }
+*/
