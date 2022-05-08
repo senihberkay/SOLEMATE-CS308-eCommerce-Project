@@ -17,7 +17,6 @@ class SignForm extends StatefulWidget {
 }
 
 class _SignFormState extends State<SignForm> {
-  
   String mail = "";
   String pass = "";
   String _message = "";
@@ -58,7 +57,7 @@ class _SignFormState extends State<SignForm> {
     Navigator.pushNamed(context, '/register');
   }
 
-
+/*
   Future<void> loginUser() async {
     try {
       UserCredential userCredential = await auth.signInWithEmailAndPassword(email: mail, password: pass);
@@ -82,6 +81,28 @@ class _SignFormState extends State<SignForm> {
       }
       else if (e.code == "wrong-password"){
         setMessage("Wrong Password!");
+      }
+    }
+  }
+*/
+  Future<void> loginUser() async {
+    try {
+      UserCredential userCredential = await auth.signInWithEmailAndPassword(
+          email: email!, password: password!);
+      if (userCredential.toString().isNotEmpty) {
+        User? currentUser = await auth.currentUser;
+        if (currentUser != null) {
+          await currentUser.reload();
+        }
+      }
+      if (_formKey.currentState!.validate()) {
+        Navigator.pushNamed(context, LoginSuccessScreen.routeName);
+      }
+    } on FirebaseAuthException catch (e) {
+      if (e.code == "user-not-found") {
+        addError(error: "No user exists with these credentials!");
+      } else if (e.code == "wrong-password") {
+        addError(error: "Wrong password!");
       }
     }
   }
@@ -129,7 +150,6 @@ class _SignFormState extends State<SignForm> {
                 // if all are valid then go to success screen
                 loginUser();
                 KeyboardUtil.hideKeyboard(context);
-                Navigator.pushNamed(context, LoginSuccessScreen.routeName);
               }
             },
           ),
@@ -157,6 +177,8 @@ class _SignFormState extends State<SignForm> {
         } else if (value.length < 8) {
           addError(error: kShortPassError);
           return "";
+        } else {
+          addError(error: kWrongPassError);
         }
         return null;
       },
