@@ -5,8 +5,8 @@ import 'package:flutter_auth/screens/sign_up/sign_up_screen.dart';
 import '../constants.dart';
 import '../size_config.dart';
 
-class ContiuneAnonTExt extends StatelessWidget {
-  const ContiuneAnonTExt({
+class ContinueAnonText extends StatelessWidget {
+  const ContinueAnonText({
     Key? key,
   }) : super(key: key);
 
