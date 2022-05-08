@@ -8,7 +8,14 @@ import 'package:flutter_auth/models/Product.dart';
 
 import '../../../constants.dart';
 
-class Body extends StatelessWidget {
+class Body extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return _BodyState();
+  }
+}
+
+class _BodyState extends State<Body> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -28,7 +35,6 @@ class Body extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              
             ],
           ),
         ),
