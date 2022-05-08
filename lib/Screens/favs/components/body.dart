@@ -4,6 +4,7 @@ import 'package:flutter_auth/components/default_button.dart';
 import 'package:flutter_auth/components/form_error.dart';
 import 'package:flutter_auth/components/no_account_text.dart';
 import 'package:flutter_auth/size_config.dart';
+import 'package:flutter_auth/models/Product.dart';
 
 import '../../../constants.dart';
 
@@ -27,6 +28,7 @@ class Body extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
+              
             ],
           ),
         ),
