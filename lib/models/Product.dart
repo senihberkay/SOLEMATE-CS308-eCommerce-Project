@@ -1,17 +1,19 @@
+import 'package:favorite_button/favorite_button.dart';
 import 'package:flutter/material.dart';
+
+import '../size_config.dart';
 
 class Product {
   final int id;
   final String title, description;
   final List<String> images;
   final double rating, price;
-  final bool isFavourite, isPopular;
+  final bool isPopular;
 
   Product({
     required this.id,
     required this.images,
     this.rating = 0.0,
-    this.isFavourite = false,
     this.isPopular = false,
     required this.title,
     required this.price,
@@ -34,7 +36,6 @@ List<Product> demoProducts = [
     price: 140,
     description: description,
     rating: 4.8,
-    isFavourite: true,
     isPopular: true,
   ),
   Product(
@@ -57,7 +58,6 @@ List<Product> demoProducts = [
     price: 120,
     description: description,
     rating: 4.4,
-    isFavourite: true,
     isPopular: true,
   ),
   Product(
@@ -69,8 +69,9 @@ List<Product> demoProducts = [
     price: 135,
     description: description,
     rating: 4.7,
-    isFavourite: true,
   ),
 ];
+
+List<String> favProducts = [];
 
 const String description = "Yuru yuregim, gidelim buralardan ask bizimle degil";

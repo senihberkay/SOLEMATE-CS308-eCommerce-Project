@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_auth/Screens/favs/favs_screen.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_auth/screens/home/home_screen.dart';
-// import 'package:flutter_auth/screens/profile/profile_screen.dart'; // simdilik
-
+//import 'package:flutter_auth/screens/profile/profile_screen.dart';
+import 'package:flutter_auth/Screens/favs/favs_screen.dart';
+import '../Screens/profile/profile_screen.dart';
 import '../constants.dart';
 import '../enums.dart';
 
@@ -50,7 +52,9 @@ class CustomBottomNavBar extends StatelessWidget {
               ),
               IconButton(
                 icon: SvgPicture.asset("assets/icons/Heart Icon.svg"),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, FavsScreen.routeName);
+                },
               ),
               IconButton(
                 icon: SvgPicture.asset("assets/icons/Chat bubble Icon.svg"),
@@ -63,9 +67,8 @@ class CustomBottomNavBar extends StatelessWidget {
                       ? kPrimaryColor
                       : inActiveIconColor,
                 ),
-                // onPressed: () =>
-                //     Navigator.pushNamed(context, ProfileScreen.routeName),
-                onPressed: () {}, // simdilik üstteki comment kısmını ac
+                onPressed: () =>
+                    Navigator.pushNamed(context, ProfileScreen.routeName),
               ),
             ],
           )),
