@@ -1,6 +1,8 @@
 //import 'dart:js';
 
 import 'package:flutter/widgets.dart';
+import 'package:flutter_auth/Screens/cart/components/check_out_card.dart';
+import 'package:flutter_auth/Screens/checkout/checkout_screen.dart';
 import 'package:flutter_auth/Screens/favs/favs_screen.dart';
 import 'package:flutter_auth/screens/cart/cart_screen.dart';
 import 'package:flutter_auth/screens/complete_profile/complete_profile_screen.dart';
@@ -14,6 +16,7 @@ import 'package:flutter_auth/screens/sign_in/sign_in_screen.dart';
 import 'package:flutter_auth/screens/splash/splash_screen.dart';
 import 'package:flutter_auth/Screens/favs/favs_screen.dart';
 import 'screens/sign_up/sign_up_screen.dart';
+import 'package:flutter_auth/Screens/checkout/checkout_screen.dart';
 
 // We use name route
 // All our routes will be available here
@@ -29,5 +32,6 @@ final Map<String, WidgetBuilder> routes = {
   DetailsScreen.routeName: (context) => DetailsScreen(),
   CartScreen.routeName: (context) => CartScreen(),
   ProfileScreen.routeName: (context) => ProfileScreen(),
-  FavsScreen.routeName: (context) => FavsScreen()
+  FavsScreen.routeName: (context) => FavsScreen(),
+  CheckoutScreen.routeName: (context) => CheckoutScreen(),
 };

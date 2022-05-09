@@ -4,6 +4,7 @@ import 'package:flutter_auth/components/default_button.dart';
 
 import '../../../constants.dart';
 import '../../../size_config.dart';
+import 'package:flutter_auth/Screens/checkout/checkout_screen.dart';
 
 class CheckoutCard extends StatelessWidget {
   const CheckoutCard({
@@ -68,7 +69,7 @@ class CheckoutCard extends StatelessWidget {
                     text: "Total:\n",
                     children: [
                       TextSpan(
-                        text: "\$337.15",
+                        text: "\$260.0",
                         style: TextStyle(fontSize: 16, color: Colors.black),
                       ),
                     ],
@@ -78,7 +79,9 @@ class CheckoutCard extends StatelessWidget {
                   width: getProportionateScreenWidth(190),
                   child: DefaultButton(
                     text: "Check Out",
-                    press: () {},
+                    press: () {
+                      Navigator.pushNamed(context, CheckoutScreen.routeName);
+                    },
                   ),
                 ),
               ],

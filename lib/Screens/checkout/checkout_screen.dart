@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 
 import 'components/body.dart';
 
-class FavsScreen extends StatelessWidget {
-  static String routeName = "/favs";
+class CheckoutScreen extends StatelessWidget {
+  static String routeName = "/checkout";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Favourites"),
+        title: Text("Check Out"),
       ),
       body: Body(),
     );
