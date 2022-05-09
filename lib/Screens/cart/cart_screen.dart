@@ -27,6 +27,7 @@ class _CartScreenState extends State<CartScreen> {
   var cart = [];
   var sum = 0.0;
 
+
   calculateTotal() {
     cart.forEach((element) {
       setState(() {
@@ -47,14 +48,13 @@ class _CartScreenState extends State<CartScreen> {
     });
   }
 
-  Future<void> deleteFromCart(String ID, int index) async {
+  Future<void> deleteFromCart(String ID, int index, String size) async {
     User? currentUser = auth.currentUser;
     assert(currentUser != null);
     var totalCost = double.parse(cart[index]['price']) * cart[index]['quantity'];
     setState(() {
       sum -= totalCost;
-      cart.removeWhere((element) => element['ID'] == ID);
-
+      cart.removeWhere((element) { return (element['size'] == size && element['ID'] == ID);});
     });
     final CollectionReference collection = FirebaseFirestore.instance.collection('users');
     await collection.doc(currentUser!.uid).update({
@@ -65,7 +65,6 @@ class _CartScreenState extends State<CartScreen> {
   incrementQuantity(String ID, int index) async {
     User? currentUser = auth.currentUser;
     assert(currentUser != null);
-
     var index = cart.indexWhere((element) => element['ID'] == ID);
     var cartItem = cart[index];
     cartItem['quantity'] = cartItem['quantity'] + 1;
@@ -126,7 +125,7 @@ class _CartScreenState extends State<CartScreen> {
               key: Key(cart[index]['ID'].toString()),
               direction: DismissDirection.startToEnd,
               onDismissed: (direction) {
-                deleteFromCart(cart[index]['ID'], index);
+                deleteFromCart(cart[index]['ID'], index, cart[index]['size']);
               },
               background: Container(
                 padding: EdgeInsets.symmetric(horizontal: 20),
@@ -170,15 +169,22 @@ class _CartScreenState extends State<CartScreen> {
                             style: TextStyle(color: Colors.black, fontSize: 16),
                             maxLines: 2,
                           ),
-                          SizedBox(height: 10),
+                          SizedBox(height: 5),
                           Text.rich(
                             TextSpan(
                               text: "${cart[index]['price']} TL",
                               style: TextStyle(
                                   fontWeight: FontWeight.w600, color: kPrimaryColor),
-
                             ),
-                          )
+                          ),
+                          SizedBox(height: 5),
+                          Text.rich(
+                            TextSpan(
+                                text: '${cart[index]['size']} EU',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w600, color: Colors.black),
+                            ),
+                          ),
                         ],
                       ),
                     ],
@@ -224,7 +230,7 @@ class _CartScreenState extends State<CartScreen> {
         ),
       ) : Center(
         child: Text(
-            'No Products Yet :('
+            'Your cart is empty... :('
         ),
       ),
       bottomNavigationBar: Container(
@@ -293,7 +299,9 @@ class _CartScreenState extends State<CartScreen> {
                     width: getProportionateScreenWidth(190),
                     child: cart.isNotEmpty ? DefaultButton(
                       text: "Check Out",
-                      press: () {},
+                      press: () {
+                        Navigator.pushNamed(context, '/checkout');
+                      },
                     ) : DefaultButton(
                       text: 'Continue Shopping',
                       press: () {
