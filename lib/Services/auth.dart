@@ -37,7 +37,8 @@ class AuthService {
           "pass": password,
           "timestamp": DateTime.now().toUtc().toString(),
           "uid": user.uid,
-          "user": 'momer',
+          "user": email.substring(0, email.indexOf('@')),
+          'cart': [],
         });
       }
     } on FirebaseAuthException catch (e) {

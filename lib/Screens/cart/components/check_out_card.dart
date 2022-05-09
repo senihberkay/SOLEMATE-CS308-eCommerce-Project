@@ -5,11 +5,50 @@ import 'package:flutter_auth/components/default_button.dart';
 import '../../../constants.dart';
 import '../../../size_config.dart';
 
-class CheckoutCard extends StatelessWidget {
-  const CheckoutCard({
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
+class CheckoutCard extends StatefulWidget {
+  CheckoutCard({
     Key? key,
   }) : super(key: key);
 
+  @override
+  State<CheckoutCard> createState() => _CheckoutCardState();
+}
+
+class _CheckoutCardState extends State<CheckoutCard> {
+
+  FirebaseAuth auth = FirebaseAuth.instance;
+  dynamic data;
+  var cart = [];
+  var sum = 0.0;
+
+  Future<void> getData() async {
+    User? currentUser = auth.currentUser;
+    assert(currentUser != null);
+    final CollectionReference collection = FirebaseFirestore.instance.collection('users');
+    await collection.doc(currentUser!.uid).get().then((DocumentSnapshot snapshot) async {
+      data = snapshot.data();
+      setState(() {
+        cart = data['cart'];
+      });
+    });
+  }
+
+  calculateTotal() {
+    cart.forEach((element) {
+      setState(() {
+        sum += double.parse(element['price']) * element['quantity'];
+      });
+    });
+  }
+
+  _CheckoutCardState() {
+    getData().then((e) {
+      calculateTotal();
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -68,7 +107,7 @@ class CheckoutCard extends StatelessWidget {
                     text: "Total:\n",
                     children: [
                       TextSpan(
-                        text: "\$337.15",
+                        text: sum.toString() + ' TL',
                         style: TextStyle(fontSize: 16, color: Colors.black),
                       ),
                     ],
