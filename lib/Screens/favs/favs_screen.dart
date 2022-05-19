@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'components/body.dart';
 
-
-class _FavsScreenState extends State<FavsScreen> {
+class FavsScreen extends StatelessWidget {
+  static var routeName = "/favs";
 
   @override
   Widget build(BuildContext context) {
