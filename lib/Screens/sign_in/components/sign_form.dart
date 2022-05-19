@@ -60,27 +60,21 @@ class _SignFormState extends State<SignForm> {
 /*
   Future<void> loginUser() async {
     try {
-      UserCredential userCredential = await auth.signInWithEmailAndPassword(email: mail, password: pass);
+      UserCredential userCredential = await auth.signInWithEmailAndPassword(email: email!, password: password!);
       if (userCredential.toString().isNotEmpty) {
        
         User? currentUser = await auth.currentUser;
         if (currentUser != null) {
           await currentUser.reload();
         }
-
+        Navigator.pushNamed(context, LoginSuccessScreen.routeName);
       }
     } on FirebaseAuthException catch (e) {
       if (e.code == "user-not-found") {
-        setMessage("No user exists with these credentials!");
-        failLogin++;
-        if (failLogin == 3) {
-          setMessage("You have tried to login with non-existing credentials 3 times. Redirecting you to the register page.");
-          await Future.delayed(const Duration(seconds: 5), (){});
-          signupUser();
-        }
+        addError(error: 'No user exists with these credentials!');
       }
       else if (e.code == "wrong-password"){
-        setMessage("Wrong Password!");
+        addError(error: 'Wrong password!');
       }
     }
   }

@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'components/body.dart';
 
-class FavsScreen extends StatelessWidget {
-  static String routeName = "/favs";
+
+class _FavsScreenState extends State<FavsScreen> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

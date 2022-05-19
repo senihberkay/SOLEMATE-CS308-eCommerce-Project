@@ -4,27 +4,34 @@ import 'package:flutter/material.dart';
 import '../size_config.dart';
 
 class Product {
-  final int id;
-  final String title, description;
-  final List<String> images;
-  final double rating, price;
+  final String ID;
+  final String name, brand, description, distributor, warrantyStatus, price;
+  final double rating;
   final bool isPopular;
+  var sizesStocks = [];
+  var comments = [];
+  var pictureURLs = [];
 
   Product({
-    required this.id,
-    required this.images,
+    required this.ID,
+    required this.pictureURLs,
     this.rating = 0.0,
     this.isPopular = false,
-    required this.title,
+    required this.name,
+    required this.brand,
     required this.price,
     required this.description,
+    required this.comments,
+    required this.sizesStocks,
+    required this.distributor,
+    required this.warrantyStatus
   });
 }
 
 // Our demo Products
 
 List<Product> demoProducts = [
-  Product(
+  /*Product(
     id: 1,
     images: [
       "assets/images/converse1.png",
@@ -37,6 +44,7 @@ List<Product> demoProducts = [
     description: description,
     rating: 4.8,
     isPopular: true,
+
   ),
   Product(
     id: 2,
@@ -69,7 +77,7 @@ List<Product> demoProducts = [
     price: 135,
     description: description,
     rating: 4.7,
-  ),
+  ),*/
 ];
 
 List<String> favProducts = [];

@@ -6,7 +6,10 @@ import 'package:flutter_auth/size_config.dart';
 import 'section_title.dart';
 
 class PopularProducts extends StatelessWidget {
-  const PopularProducts({Key? key}) : super(key: key); // sonradan eklendi
+  List<Product> products = [];
+  PopularProducts(
+    {Key? key, required this.products}
+  ) : super(key: key); // sonradan eklendi
 
   @override
   Widget build(BuildContext context) {
@@ -23,10 +26,10 @@ class PopularProducts extends StatelessWidget {
           child: Row(
             children: [
               ...List.generate(
-                demoProducts.length,
+                products.length,
                 (index) {
-                  if (demoProducts[index].isPopular)
-                    return ProductCard(product: demoProducts[index]);
+
+                  return ProductCard(product: products[index]);
 
                   return SizedBox
                       .shrink(); // here by default width and height is 0

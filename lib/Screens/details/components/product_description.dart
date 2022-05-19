@@ -1,4 +1,5 @@
 import 'package:favorite_button/favorite_button.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_auth/models/Product.dart';
@@ -21,14 +22,29 @@ class ProductDescription extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Padding(
-          padding:
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Padding(
+              padding:
+                  EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
+              child: Text(
+                product.name,
+                style: Theme.of(context).textTheme.headline6,
+              ),
+            ),
+            Padding(
+              padding:
               EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
-          child: Text(
-            product.title,
-            style: Theme.of(context).textTheme.headline6,
-          ),
+              child: Text(
+                product.price + ' TL',
+                style: Theme.of(context).textTheme.headline6,
+              ),
+            ),
+          ],
         ),
+
+
         Align(
           alignment: Alignment.centerRight,
           child: Container(

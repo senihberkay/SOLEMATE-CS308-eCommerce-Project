@@ -42,14 +42,14 @@ class ProductCard extends StatelessWidget {
                     borderRadius: BorderRadius.circular(15),
                   ),
                   child: Hero(
-                    tag: product.id.toString(),
-                    child: Image.asset(product.images[0]),
+                    tag: product.ID.toString(),
+                    child: Image.network(product.pictureURLs[0]),
                   ),
                 ),
               ),
               const SizedBox(height: 10),
               Text(
-                product.title,
+                product.name,
                 style: TextStyle(color: Colors.black),
                 maxLines: 2,
               ),
