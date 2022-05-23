@@ -1,6 +1,5 @@
 import 'package:favorite_button/favorite_button.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_auth/models/Product.dart';
 import 'package:flutter_auth/screens/details/details_screen.dart';
 
@@ -50,7 +49,7 @@ class ProductCard extends StatelessWidget {
               const SizedBox(height: 10),
               Text(
                 product.name,
-                style: TextStyle(color: Colors.black),
+                style: const TextStyle(color: Colors.black),
                 maxLines: 2,
               ),
               Row(

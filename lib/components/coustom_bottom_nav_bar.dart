@@ -3,7 +3,6 @@ import 'package:flutter_auth/Screens/favs/favs_screen.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_auth/screens/home/home_screen.dart';
 //import 'package:flutter_auth/screens/profile/profile_screen.dart';
-import 'package:flutter_auth/Screens/favs/favs_screen.dart';
 import '../Screens/profile/profile_screen.dart';
 import '../constants.dart';
 import '../enums.dart';
@@ -18,7 +17,7 @@ class CustomBottomNavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Color inActiveIconColor = Color(0xFFB6B6B6);
+    final Color inActiveIconColor = const Color(0xFFB6B6B6);
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 14),
       decoration: BoxDecoration(

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-import 'components/body.dart';
+
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../../../components/rounded_button.dart';
 import '../../../components/rounded_input_field.dart';
-import '../../../constants.dart';
+
 import './components/background.dart';
 
 import 'dart:math';
@@ -62,7 +62,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        title: Text("Check Out"),
+        title: const Text("Check Out"),
       ),
       body: Background(
         child: SingleChildScrollView(

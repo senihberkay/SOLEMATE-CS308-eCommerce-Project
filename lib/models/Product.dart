@@ -1,8 +1,3 @@
-import 'package:favorite_button/favorite_button.dart';
-import 'package:flutter/material.dart';
-
-import '../size_config.dart';
-
 class Product {
   final String ID;
   final String name, brand, description, distributor, warrantyStatus, price;

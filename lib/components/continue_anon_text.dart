@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/Screens/Home/home_screen.dart';
-import 'package:flutter_auth/screens/sign_up/sign_up_screen.dart';
-
-import '../constants.dart';
 import '../size_config.dart';
 
 class ContinueAnonText extends StatelessWidget {

@@ -59,15 +59,15 @@ class _CheckoutCardState extends State<CheckoutCard> {
       // height: 174,
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.only(
+        borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(30),
           topRight: Radius.circular(30),
         ),
         boxShadow: [
           BoxShadow(
-            offset: Offset(0, -15),
+            offset: const Offset(0, -15),
             blurRadius: 20,
-            color: Color(0xFFDADADA).withOpacity(0.15),
+            color: const Color(0xFFDADADA).withOpacity(0.15),
           )
         ],
       ),
@@ -79,19 +79,19 @@ class _CheckoutCardState extends State<CheckoutCard> {
             Row(
               children: [
                 Container(
-                  padding: EdgeInsets.all(10),
+                  padding: const EdgeInsets.all(10),
                   height: getProportionateScreenWidth(40),
                   width: getProportionateScreenWidth(40),
                   decoration: BoxDecoration(
-                    color: Color(0xFFF5F6F9),
+                    color: const Color(0xFFF5F6F9),
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: SvgPicture.asset("assets/icons/receipt.svg"),
                 ),
-                Spacer(),
-                Text("Add voucher code"),
+                const Spacer(),
+                const Text("Add voucher code"),
                 const SizedBox(width: 10),
-                Icon(
+                const Icon(
                   Icons.arrow_forward_ios,
                   size: 12,
                   color: kTextColor,
@@ -108,7 +108,7 @@ class _CheckoutCardState extends State<CheckoutCard> {
                     children: [
                       TextSpan(
                         text: sum.toString() + ' TL',
-                        style: TextStyle(fontSize: 16, color: Colors.black),
+                        style: const TextStyle(fontSize: 16, color: Colors.black),
                       ),
                     ],
                   ),

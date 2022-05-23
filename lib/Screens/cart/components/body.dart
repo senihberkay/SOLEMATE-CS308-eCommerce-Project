@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:flutter_auth/models/Cart.dart';
-
 import '../../../size_config.dart';
 import 'cart_card.dart';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -16,25 +13,25 @@ class Body extends StatefulWidget {
 }
 
 class _BodyState extends State<Body> {
-
   FirebaseAuth auth = FirebaseAuth.instance;
 
   Future<void> deleteFromCart(String ID) async {
     User? currentUser = auth.currentUser;
     assert(currentUser != null);
     widget.cart.removeWhere((element) => element['ID'] == ID);
-    final CollectionReference collection = FirebaseFirestore.instance.collection('users');
+    final CollectionReference collection =
+        FirebaseFirestore.instance.collection('users');
     await collection.doc(currentUser!.uid).update({
       'cart': widget.cart,
     });
-    }
+  }
 
   @override
   Widget build(BuildContext context) {
     if (widget.cart.isNotEmpty) {
       return Padding(
         padding:
-        EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
+            EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
         child: ListView.builder(
           itemCount: widget.cart.length,
           itemBuilder: (context, index) => Padding(
@@ -53,7 +50,6 @@ class _BodyState extends State<Body> {
                 ),
                 child: Row(
                   children: [
-
                     SvgPicture.asset("assets/icons/Trash.svg"),
                     Spacer(),
                   ],
@@ -73,10 +69,7 @@ class _BodyState extends State<Body> {
       );
     }
     return Center(
-      child: Text(
-        'No Products Yet :('
-      ),
+      child: Text('No Products Yet :('),
     );
-
   }
 }

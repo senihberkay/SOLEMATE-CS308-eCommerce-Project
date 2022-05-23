@@ -1,8 +1,3 @@
-import 'package:flutter/material.dart';
-
-import 'Product.dart';
-import 'Product.dart';
-
 class CartItem {
   final String name, brand, picture, ID, price;
   final int quantity;

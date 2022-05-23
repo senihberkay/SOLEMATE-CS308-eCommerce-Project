@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_auth/models/Cart.dart';
 
 import '../../../constants.dart';
 import '../../../size_config.dart';
@@ -26,7 +25,6 @@ class CartCard extends StatefulWidget {
 }
 
 class _CartCardState extends State<CartCard> {
-
   FirebaseAuth auth = FirebaseAuth.instance;
   dynamic data;
   var cart = [];
@@ -38,8 +36,12 @@ class _CartCardState extends State<CartCard> {
     setState(() {
       quantity += 1;
     });
-    final CollectionReference collection = FirebaseFirestore.instance.collection('users');
-    await collection.doc(currentUser!.uid).get().then((DocumentSnapshot snapshot) async {
+    final CollectionReference collection =
+        FirebaseFirestore.instance.collection('users');
+    await collection
+        .doc(currentUser!.uid)
+        .get()
+        .then((DocumentSnapshot snapshot) async {
       data = snapshot.data();
       setState(() {
         cart = data['cart'];
@@ -54,9 +56,7 @@ class _CartCardState extends State<CartCard> {
     });
   }
 
-  decrementQuantity() {
-
-  }
+  decrementQuantity() {}
 
   initState() {
     super.initState();
@@ -101,15 +101,12 @@ class _CartCardState extends State<CartCard> {
                     text: "${widget.price} TL",
                     style: TextStyle(
                         fontWeight: FontWeight.w600, color: kPrimaryColor),
-
                   ),
                 )
               ],
             ),
           ],
         ),
-
-
         Column(
           children: [
             Row(
@@ -118,9 +115,7 @@ class _CartCardState extends State<CartCard> {
                   iconSize: 20,
                   padding: const EdgeInsets.all(0),
                   icon: Icon(Icons.indeterminate_check_box),
-                  onPressed: (){
-
-                  },
+                  onPressed: () {},
                 ),
                 Text(
                   quantity.toString(),
@@ -134,7 +129,7 @@ class _CartCardState extends State<CartCard> {
                   iconSize: 20,
                   padding: const EdgeInsets.all(0),
                   icon: Icon(Icons.add_box_rounded),
-                  onPressed: (){
+                  onPressed: () {
                     incrementQuantity(widget.ID);
                   },
                 ),
