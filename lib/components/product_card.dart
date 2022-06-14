@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:favorite_button/favorite_button.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/models/Product.dart';
 import 'package:flutter_auth/screens/details/details_screen.dart';
@@ -7,7 +9,7 @@ import '../constants.dart';
 import '../size_config.dart';
 
 class ProductCard extends StatelessWidget {
-  const ProductCard({
+  ProductCard({
     Key? key,
     this.width = 140,
     this.aspectRetio = 1.02,
@@ -16,6 +18,52 @@ class ProductCard extends StatelessWidget {
 
   final double width, aspectRetio;
   final Product product;
+  FirebaseAuth auth = FirebaseAuth.instance;
+  var fav = [];
+  String currentValue = '';
+
+  Future<void> addToFav(Product product) async {
+    User? currentUser = auth.currentUser;
+    assert(currentUser != null);
+
+    var index = -1;
+    if (fav.isNotEmpty) {
+      index = fav.indexWhere((element) => element['ID'] == product.ID);
+    }
+
+
+    var FavouriteItem = {
+      'name': product.name,
+      'brand': product.brand,
+      'picture': product.pictureURLs[0],
+      'ID': product.ID,
+      'price': product.price
+    };
+    fav.add(FavouriteItem);
+
+
+    final CollectionReference collection = FirebaseFirestore.instance.collection('users');
+    await collection.doc(currentUser!.uid).update({
+      'favourite': fav,
+    });
+  }
+
+  Future<void> removeFromFav(Product product) async {
+    User? currentUser = auth.currentUser;
+    assert(currentUser != null);
+
+    fav.removeWhere((element) {
+        return (element['ID'] == product.ID);
+      });
+
+    final CollectionReference collection =
+    FirebaseFirestore.instance.collection('users');
+    await collection.doc(currentUser!.uid).update({
+      'favourite': fav,
+    });
+  }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -69,6 +117,13 @@ class ProductCard extends StatelessWidget {
                       child: FavoriteButton(
                         iconSize: SizeConfig.screenHeight * 0.05,
                         valueChanged: (_isFavorite) {
+                          if (_isFavorite){
+                            addToFav(product);
+                          }
+                          else{
+                            removeFromFav(product);
+                          }
+
                           print('Is Favorite $_isFavorite)');
                         },
                       )),

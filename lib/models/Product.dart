@@ -1,7 +1,7 @@
 class Product {
   final String ID;
   final String name, brand, description, distributor, warrantyStatus, price;
-  final double rating;
+  //final double rating;
   final bool isPopular;
   var sizesStocks = [];
   var comments = [];
@@ -10,7 +10,7 @@ class Product {
   Product({
     required this.ID,
     required this.pictureURLs,
-    this.rating = 0.0,
+    //this.rating = 0.0,
     this.isPopular = false,
     required this.name,
     required this.brand,
@@ -20,6 +20,7 @@ class Product {
     required this.sizesStocks,
     required this.distributor,
     required this.warrantyStatus
+
   });
 }
 

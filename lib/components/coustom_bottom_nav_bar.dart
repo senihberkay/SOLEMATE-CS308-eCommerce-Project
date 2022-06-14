@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_auth/screens/home/home_screen.dart';
 //import 'package:flutter_auth/screens/profile/profile_screen.dart';
 import '../Screens/profile/profile_screen.dart';
+import '../Screens/search/search_screen.dart';
 import '../constants.dart';
 import '../enums.dart';
 
@@ -52,12 +53,17 @@ class CustomBottomNavBar extends StatelessWidget {
               IconButton(
                 icon: SvgPicture.asset("assets/icons/Heart Icon.svg"),
                 onPressed: () {
-                  Navigator.pushNamed(context, FavsScreen.routeName);
+                  Navigator.pushNamed(context, FavScreen.routeName);
                 },
               ),
               IconButton(
-                icon: SvgPicture.asset("assets/icons/Chat bubble Icon.svg"),
-                onPressed: () {},
+                icon: Icon(Icons.search),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Search()),
+                  );
+                },
               ),
               IconButton(
                 icon: SvgPicture.asset(
