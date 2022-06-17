@@ -6,6 +6,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:flutter_auth/main.dart';
 
+import '../test_driver/navigation_test.mocks.dart';
+
 void main() {
   testWidgets('Button is present and triggers navigation after tapped',
       (WidgetTester tester) async {
