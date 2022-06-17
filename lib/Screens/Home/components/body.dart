@@ -49,7 +49,7 @@ class _BodyState extends State<Body> {
           String name = data['name'];
           String brand = data['brand'];
           String ID = data['ID'];
-          double rating = data['rating'].toDouble();
+          //double rating = data['rating'];
           String description = data['description'];
           var pictureURLs = data['pictureURLs'];
           var comments = data['comments'];
@@ -57,11 +57,12 @@ class _BodyState extends State<Body> {
           var sizesStocks = data['sizesStocks'];
           String distributor = data['distributor'];
           String warrantyStatus = data['warrantyStatus'];
+
           Product product = Product(
             name: name,
             brand: brand,
             price: price,
-            rating: rating,
+            //rating: rating,
             ID: ID,
             description: description,
             pictureURLs: pictureURLs,
@@ -69,6 +70,7 @@ class _BodyState extends State<Body> {
             sizesStocks: sizesStocks,
             distributor: distributor,
             warrantyStatus: warrantyStatus
+
           );
           setState(() {
             products.add(product);

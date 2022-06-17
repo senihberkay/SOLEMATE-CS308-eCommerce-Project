@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-
-
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-
 import '../../../components/rounded_button.dart';
 import '../../../components/rounded_input_field.dart';
-
 import './components/background.dart';
-
 import 'dart:math';
+import 'components/api/pdf_api.dart';
+import 'components/api/pdf_invoice_api.dart';
+import 'components/models/customer.dart';
+import 'components/models/invoice.dart';
+import 'components/models/supplier.dart';
+
 
 class CheckoutScreen extends StatefulWidget {
   static String routeName = "/checkout";
@@ -25,6 +25,8 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
   dynamic data;
   var cart = [];
   String notiID = '';
+  var userName = 'user';
+  String email = 'mail';
 
 
   Future<void> getData() async {
@@ -35,6 +37,10 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
       data = snapshot.data();
       setState(() {
         cart = data['cart'];
+        email = data['email'];
+      });
+      setState(() {
+        userName = data['user'];
       });
     });
   }
@@ -93,8 +99,45 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
               ),
               RoundedButton(
                 text: "Place Order",
-                press: () {placeOrder();},
+                press: () async{
+                  placeOrder();
+
+                  final date = DateTime.now();
+                  final dueDate = date.add(Duration(days: 7));
+
+                  final invoice = Invoice(
+                      supplier: Supplier(
+                        name: 'SOLEMATE',
+                        address: 'Sabanci University, Tuzla, Istanbul',
+                        paymentInfo: 'https://paypal.me/sendmoniezz',
+                      ),
+                      customer: Customer(
+                        name: userName,   //  currentUser?.displayName ?? 'customername',
+                        address: email,   // currentUser?.email ?? 'customer@gmail.com',
+                      ),
+                      info: InvoiceInfo(
+                        date: date,
+                        dueDate: dueDate,
+                        description: 'CS 308 project',
+                        number: '${DateTime.now().year}-9999',
+                      ),
+                      items: List.generate(cart.length, (index) {
+                        return InvoiceItem(
+                            description: cart[index]['name'],
+                            date: DateTime.now(),
+                            quantity: cart[index]['quantity'],
+                            vat: 0.18,
+                            unitPrice: double.parse(cart[0]['price']));
+                      }),
+
+                  );
+
+                  final pdfFile = await PdfInvoiceApi.generate(invoice);
+                  PdfApi.openFile(pdfFile);
+
+                  },
               ),
+
               SizedBox(height: size.height * 0.03),
             ],
           ),

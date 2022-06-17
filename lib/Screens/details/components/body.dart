@@ -23,7 +23,6 @@ class Body extends StatefulWidget {
 }
 
 class _BodyState extends State<Body> {
-
   FirebaseAuth auth = FirebaseAuth.instance;
   dynamic data;
   var cart = [];
@@ -39,13 +38,12 @@ class _BodyState extends State<Body> {
     if (cart.isNotEmpty) {
       index = cart.indexWhere((element) => element['ID'] == product.ID);
     }
-    if (index != -1){
+    if (index != -1) {
       if (cart[index]['size'] == currentValue) {
         var cartItem2 = cart[index];
         cartItem2['quantity'] = cartItem2['quantity'] + quantity;
         cart[index] = cartItem2;
-      }
-      else {
+      } else {
         var cartItem = {
           'name': product.name,
           'brand': product.brand,
@@ -53,12 +51,11 @@ class _BodyState extends State<Body> {
           'ID': product.ID,
           'price': product.price,
           'quantity': quantity,
-          'size' : currentValue,
+          'size': currentValue,
         };
         cart.add(cartItem);
       }
-    }
-    else {
+    } else {
       var cartItem = {
         'name': product.name,
         'brand': product.brand,
@@ -66,11 +63,12 @@ class _BodyState extends State<Body> {
         'ID': product.ID,
         'price': product.price,
         'quantity': quantity,
-        'size' : currentValue,
+        'size': currentValue,
       };
       cart.add(cartItem);
     }
-    final CollectionReference collection = FirebaseFirestore.instance.collection('users');
+    final CollectionReference collection =
+        FirebaseFirestore.instance.collection('users');
     await collection.doc(currentUser!.uid).update({
       'cart': cart,
     });
@@ -79,8 +77,12 @@ class _BodyState extends State<Body> {
   Future<void> getData() async {
     User? currentUser = auth.currentUser;
     assert(currentUser != null);
-    final CollectionReference collection = FirebaseFirestore.instance.collection('users');
-    collection.doc(currentUser!.uid).get().then((DocumentSnapshot snapshot) async {
+    final CollectionReference collection =
+        FirebaseFirestore.instance.collection('users');
+    collection
+        .doc(currentUser!.uid)
+        .get()
+        .then((DocumentSnapshot snapshot) async {
       data = snapshot.data();
       cart = data['cart'];
     });
@@ -90,120 +92,119 @@ class _BodyState extends State<Body> {
     getData();
   }
 
-  Future<void> showAlertDialog(String title, String message, Product product) async {
+  Future<void> showAlertDialog(
+      String title, String message, Product product) async {
     bool isiOS = Platform.isIOS;
     return showDialog(
         context: context,
         barrierDismissible: true,
         builder: (BuildContext context) {
-          return StatefulBuilder(
-            builder: (context, setState) {
-              return AlertDialog(
-                title: Text(title, textAlign: TextAlign.center,),
-                content: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      Column(
-                        children: widget.product.sizesStocks.map((e) {
-                          return ListTile(
-                            minVerticalPadding: 0,
-                            title: Text(
-                                e['size'].toString()
-                            ),
-                            trailing: Radio<dynamic>(
-                              activeColor: Colors.orange,
-                              value: e['size'],
-                              groupValue: currentValue,
-                              onChanged: (value) {
-                                setState(() {
-                                  currentValue = value;
-                                });
-                              },
-                            ),
-                          );
-                        }).toList(),
-
-                      ),
-                      currentValue != '' ?
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          quantity > 1 ?
-                          IconButton(
-                            iconSize: 20,
-                            padding: const EdgeInsets.all(0),
-                            icon: Icon(Icons.indeterminate_check_box),
-                            onPressed: (){
+          return StatefulBuilder(builder: (context, setState) {
+            return AlertDialog(
+              title: Text(
+                title,
+                textAlign: TextAlign.center,
+              ),
+              content: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    Column(
+                      children: widget.product.sizesStocks.map((e) {
+                        return ListTile(
+                          minVerticalPadding: 0,
+                          title: Text(e['size'].toString()),
+                          trailing: Radio<dynamic>(
+                            activeColor: Colors.orange,
+                            value: e['size'],
+                            groupValue: currentValue,
+                            onChanged: (value) {
                               setState(() {
-                                quantity -= 1;
-                              });
-                            },
-                          ) : const SizedBox(width: 50),
-                          Text(
-                            quantity.toString(),
-                            style: TextStyle(
-                              fontWeight: FontWeight.w800,
-                              fontSize: 15,
-                              fontFamily: 'Open Sans',
-                            ),
-                          ),
-                          IconButton(
-                            iconSize: 20,
-                            padding: const EdgeInsets.all(0),
-                            icon: Icon(Icons.add_box_rounded),
-                            onPressed: (){
-                              setState(() {
-                                quantity += 1;
+                                currentValue = value;
                               });
                             },
                           ),
-                        ],
-                      ) : Container(),
-                    ],
-                  ),
+                        );
+                      }).toList(),
+                    ),
+                    currentValue != ''
+                        ? Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              quantity > 1
+                                  ? IconButton(
+                                      iconSize: 20,
+                                      padding: const EdgeInsets.all(0),
+                                      icon: Icon(Icons.indeterminate_check_box),
+                                      onPressed: () {
+                                        setState(() {
+                                          quantity -= 1;
+                                        });
+                                      },
+                                    )
+                                  : const SizedBox(width: 50),
+                              Text(
+                                quantity.toString(),
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w800,
+                                  fontSize: 15,
+                                  fontFamily: 'Open Sans',
+                                ),
+                              ),
+                              IconButton(
+                                iconSize: 20,
+                                padding: const EdgeInsets.all(0),
+                                icon: Icon(Icons.add_box_rounded),
+                                onPressed: () {
+                                  setState(() {
+                                    quantity += 1;
+                                  });
+                                },
+                              ),
+                            ],
+                          )
+                        : Container(),
+                  ],
                 ),
-                actions: [
-                  Padding(
-                    padding: const EdgeInsets.all(20.0),
-                    child: currentValue != '' ? DefaultButton(
-                        press: () {
-                          addToCart(widget.product).then((e) {
-                            Navigator.pop(context);
-                          });
-                        },
-                        text: 'Add to Cart'
-                    ) :
-                    Padding(
-                      padding: const EdgeInsets.all(20.0),
-                      child: SizedBox(
-                        width: double.infinity,
-                        height: getProportionateScreenHeight(56),
-                        child: TextButton(
-                          style: TextButton.styleFrom(
-                            shape:
-                            RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-                            primary: Colors.white,
-                            backgroundColor: Colors.grey,
-                          ),
-                          onPressed: null,
-                          child: Text(
-                            'Select a Size',
-                            style: TextStyle(
-                              fontSize: getProportionateScreenWidth(18),
-                              color: Colors.white,
+              ),
+              actions: [
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: currentValue != ''
+                      ? DefaultButton(
+                          press: () {
+                            addToCart(widget.product).then((e) {
+                              Navigator.pop(context);
+                            });
+                          },
+                          text: 'Add to Cart')
+                      : Padding(
+                          padding: const EdgeInsets.all(20.0),
+                          child: SizedBox(
+                            width: double.infinity,
+                            height: getProportionateScreenHeight(56),
+                            child: TextButton(
+                              style: TextButton.styleFrom(
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(20)),
+                                primary: Colors.white,
+                                backgroundColor: Colors.grey,
+                              ),
+                              onPressed: null,
+                              child: Text(
+                                'Select a Size',
+                                style: TextStyle(
+                                  fontSize: getProportionateScreenWidth(18),
+                                  color: Colors.white,
+                                ),
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                    ),
-                  ),
-                ],
-              );
-            }
-
-          );
-
-      });
+                ),
+              ],
+            );
+          });
+        });
   }
 
   @override
@@ -230,17 +231,20 @@ class _BodyState extends State<Body> {
                           left: SizeConfig.screenWidth * 0.15,
                           right: SizeConfig.screenWidth * 0.15,
                           bottom: getProportionateScreenWidth(40),
-                          top: getProportionateScreenWidth(15),
+                          top: getProportionateScreenWidth(10),
                         ),
-                        child: widget.product.sizesStocks.isNotEmpty ? DefaultButton(
-                          text: "View Available Sizes",
-                          press: () {showAlertDialog('Sizes available', 'lol', widget.product);},
-                        ) :
-                        TextButton(
-                          child: Text('Out of Stock'),
-                          onPressed: null,
-
-                        ),
+                        child: widget.product.sizesStocks.isNotEmpty
+                            ? DefaultButton(
+                                text: "View Available Sizes",
+                                press: () {
+                                  showAlertDialog(
+                                      'Sizes available', 'lol', widget.product);
+                                },
+                              )
+                            : TextButton(
+                                child: Text('Out of Stock'),
+                                onPressed: null,
+                              ),
                       ),
                     ),
                   ],

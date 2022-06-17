@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_auth/Screens/sigin_success/sigin_success_screen.dart';
 import 'package:flutter_auth/components/custom_surfix_icon.dart';
 import 'package:flutter_auth/components/default_button.dart';
 import 'package:flutter_auth/components/form_error.dart';
@@ -53,7 +54,7 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
             text: "continue",
             press: () {
               if (_formKey.currentState!.validate()) {
-                Navigator.pushNamed(context, OtpScreen.routeName);
+                Navigator.pushNamed(context, SigninSuccessScreen.routeName);
               }
             },
           ),

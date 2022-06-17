@@ -1,6 +1,7 @@
 import 'package:favorite_button/favorite_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_auth/Screens/product_details/product_details_screen.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_auth/models/Product.dart';
 
@@ -26,16 +27,16 @@ class ProductDescription extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             Padding(
-              padding:
-                  EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
+              padding: EdgeInsets.symmetric(
+                  horizontal: getProportionateScreenWidth(20)),
               child: Text(
                 product.name,
                 style: Theme.of(context).textTheme.headline6,
               ),
             ),
             Padding(
-              padding:
-              EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
+              padding: EdgeInsets.symmetric(
+                  horizontal: getProportionateScreenWidth(20)),
               child: Text(
                 product.price + ' TL',
                 style: Theme.of(context).textTheme.headline6,
@@ -43,12 +44,10 @@ class ProductDescription extends StatelessWidget {
             ),
           ],
         ),
-
-
         Align(
           alignment: Alignment.centerRight,
           child: Container(
-              padding: EdgeInsets.all(getProportionateScreenWidth(15)),
+              padding: EdgeInsets.all(getProportionateScreenWidth(10)),
               width: getProportionateScreenWidth(64),
               child: FavoriteButton(
                 iconSize: SizeConfig.screenHeight * 0.05,
@@ -69,22 +68,24 @@ class ProductDescription extends StatelessWidget {
         ),
         Padding(
           padding: EdgeInsets.symmetric(
-            horizontal: getProportionateScreenWidth(20),
-            vertical: 10,
+            horizontal: getProportionateScreenWidth(18),
           ),
           child: GestureDetector(
-            onTap: () {},
+            onTap: () {
+              Navigator.pushNamed(context, ProductDetailsScreen.routeName);
+            },
             child: Row(
               children: [
                 Text(
                   "See More Detail",
                   style: TextStyle(
-                      fontWeight: FontWeight.w600, color: kPrimaryColor),
+                      fontWeight: FontWeight.w600,
+                      color: kPrimaryColor,
+                      fontSize: SizeConfig.screenWidth * 0.04),
                 ),
-                SizedBox(width: 5),
                 Icon(
                   Icons.arrow_forward_ios,
-                  size: 12,
+                  size: 15,
                   color: kPrimaryColor,
                 ),
               ],
