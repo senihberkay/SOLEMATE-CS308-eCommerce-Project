@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter_auth/Screens/my_account/account_screen.dart';
+import 'package:flutter_auth/Screens/settings/settings_screen.dart';
 import 'profile_menu.dart';
 import 'profile_pic.dart';
 
@@ -15,17 +16,35 @@ class Body extends StatelessWidget {
           ProfileMenu(
             text: "My Account",
             icon: "assets/icons/User Icon.svg",
-            press: () => {},
+            press: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return AccountScreen();
+                  },
+                ),
+              );
+            },
           ),
-          ProfileMenu(
-            text: "Notifications",
-            icon: "assets/icons/Bell.svg",
-            press: () {},
-          ),
+          // ProfileMenu(
+          //   text: "Notifications",
+          //   icon: "assets/icons/Bell.svg",
+          //   press: () {},
+          // ),
           ProfileMenu(
             text: "Settings",
             icon: "assets/icons/Settings.svg",
-            press: () {},
+            press: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return SettingsScreen();
+                  },
+                ),
+              );
+            },
           ),
           ProfileMenu(
             text: "Help Center",
