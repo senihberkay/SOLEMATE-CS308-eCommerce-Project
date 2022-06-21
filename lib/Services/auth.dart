@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_auth/Screens/Login/login_screen.dart';
 
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -23,14 +24,15 @@ class AuthService {
 
   Future<void> registerUser(String? email, String? password) async {
     try {
-      UserCredential userCredential = await _auth.createUserWithEmailAndPassword(email: email!, password: password!);
-      if (userCredential.toString().isNotEmpty){
+      UserCredential userCredential = await _auth
+          .createUserWithEmailAndPassword(email: email!, password: password!);
+      if (userCredential.toString().isNotEmpty) {
         User? user = _auth.currentUser;
         assert(user != null);
 
         // this is just an example to show how you can add it to firestore database. You don't have to do it while signing up,
         // because you take the username in the next form, so just auth register for now, but save the values of email and password
-        // so that you can add all these fields inside the database as well, once you have the username. 
+        // so that you can add all these fields inside the database as well, once you have the username.
         FirebaseFirestore.instance.collection('users').doc(user!.uid).set({
           "email": email,
           "member": "customer",
@@ -44,16 +46,11 @@ class AuthService {
     } on FirebaseAuthException catch (e) {
       if (e.code == "email-already-in-use") {
         // set error message to show in the front end
-      }
-
-      else if (e.code == "weak-password") {
+      } else if (e.code == "weak-password") {
         // set error message to show in the front end
-      }
-
-      else {
+      } else {
         // set error message to show in the front end
       }
     }
   }
-
 }
