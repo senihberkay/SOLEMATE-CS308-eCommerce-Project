@@ -23,7 +23,7 @@ class _FavScreenState extends State<FavScreen> {
     User? currentUser = auth.currentUser;
     assert(currentUser != null);
     final CollectionReference collection =
-    FirebaseFirestore.instance.collection('users');
+        FirebaseFirestore.instance.collection('users');
     await collection
         .doc(currentUser!.uid)
         .get()
@@ -45,7 +45,7 @@ class _FavScreenState extends State<FavScreen> {
       });
     });
     final CollectionReference collection =
-    FirebaseFirestore.instance.collection('users');
+        FirebaseFirestore.instance.collection('users');
     await collection.doc(currentUser!.uid).update({
       'favourite': fav,
     });
@@ -55,25 +55,22 @@ class _FavScreenState extends State<FavScreen> {
     getData();
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: Text('Favourites',
-          style: TextStyle(
-              color: Colors.black, fontSize: 20),
-      ), centerTitle: true),
-
-      body: fav.isNotEmpty ?
-      Padding(
-          padding: EdgeInsets.symmetric(
-              horizontal: getProportionateScreenWidth(20)),
-
-          child: ListView.builder(
-              itemCount: fav.length,
-              itemBuilder: (context, index) =>
-                  Padding(
+          title: Text(
+            'Favourites',
+            style: TextStyle(color: Colors.black, fontSize: 20),
+          ),
+          centerTitle: true),
+      body: fav.isNotEmpty
+          ? Padding(
+              padding: EdgeInsets.symmetric(
+                  horizontal: getProportionateScreenWidth(20)),
+              child: ListView.builder(
+                  itemCount: fav.length,
+                  itemBuilder: (context, index) => Padding(
                       padding: EdgeInsets.symmetric(vertical: 50),
                       child: Dismissible(
                         key: Key(fav[index]['ID'].toString()),
@@ -111,12 +108,11 @@ class _FavScreenState extends State<FavScreen> {
                                         color: Color(0xFFF5F6F9),
                                         borderRadius: BorderRadius.circular(15),
                                       ),
-                                      child: Image.network(
-                                          fav[index]['picture']),
+                                      child:
+                                          Image.network(fav[index]['picture']),
                                     ),
                                   ),
                                 ),
-
                                 SizedBox(width: 20),
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -151,13 +147,10 @@ class _FavScreenState extends State<FavScreen> {
                             ),
                           ],
                         ),
-                      )
-                  )
-          )
-      ) :
-      Center(
-        child: Text("You donot have any favourites currently"),
-      ),
+                      ))))
+          : Center(
+              child: Text("You do not have any favourites currently"),
+            ),
     );
   }
 }
