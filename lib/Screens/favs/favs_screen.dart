@@ -156,7 +156,7 @@ class _FavScreenState extends State<FavScreen> {
           )
       ) :
       Center(
-        child: Text("You donot have any favourites currently"),
+        child: Text("You do not have any favourites yet!"),
       ),
     );
   }

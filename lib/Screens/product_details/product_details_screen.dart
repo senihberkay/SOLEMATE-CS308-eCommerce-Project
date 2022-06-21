@@ -9,9 +9,11 @@ class ProductDetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Product Details"),
-      ),
-      body: Body(),
+          title: Text(
+            'Product Details',
+            style: TextStyle(color: Colors.black, fontSize: 20),
+          ),
+          centerTitle: true),
     );
   }
 }
