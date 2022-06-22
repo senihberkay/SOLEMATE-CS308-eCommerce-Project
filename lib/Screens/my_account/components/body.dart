@@ -34,7 +34,12 @@ import '../../../constants.dart';
 // }
 
 class Body extends StatelessWidget {
-  bool showPassword = false;
+  bool showPassword = true;
+
+  // void setState() {
+  //   showPassword = !showPassword;
+  // }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -107,7 +112,7 @@ class Body extends StatelessWidget {
               SizedBox(
                 height: getProportionateScreenHeight(35),
               ),
-              buildTextField("Full Name", "Dor Alex", false),
+              buildTextField("Full Name", "Andras Istvan Arato", false),
               buildTextField("E-mail", "customer@gmail.com", false),
               buildTextField("Password", "password123", true),
               buildTextField("Location", "Istanbul, Turkey", false),
@@ -122,7 +127,9 @@ class Body extends StatelessWidget {
                         horizontal: getProportionateScreenWidth(50)),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20)),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
                     child: Text("CANCEL",
                         style: TextStyle(
                             fontSize: getProportionateScreenWidth(15),
@@ -163,11 +170,7 @@ class Body extends StatelessWidget {
         decoration: InputDecoration(
             suffixIcon: isPasswordTextField
                 ? IconButton(
-                    onPressed: () {
-                      setState(() {
-                        showPassword = !showPassword;
-                      });
-                    },
+                    onPressed: () {},
                     icon: Icon(
                       Icons.remove_red_eye,
                       color: Colors.grey,
@@ -181,12 +184,10 @@ class Body extends StatelessWidget {
             alignLabelWithHint: true,
             hintStyle: TextStyle(
               fontSize: getProportionateScreenWidth(15),
-              fontWeight: FontWeight.bold,
+              fontWeight: FontWeight.w500,
               color: Colors.black,
             )),
       ),
     );
   }
 }
-
-void setState(Null Function() param0) {}
