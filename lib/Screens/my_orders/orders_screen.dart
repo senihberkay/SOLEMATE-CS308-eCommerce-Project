@@ -13,9 +13,6 @@ class OrdersScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Orders"),
-      ),
       body: Body(),
       //bottomNavigationBar: CustomBottomNavBar(selectedMenu: MenuState.profile),
     );
