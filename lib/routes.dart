@@ -18,6 +18,7 @@ import 'package:flutter_auth/Screens/checkout/checkout_screen.dart';
 import 'package:flutter_auth/Screens/product_details/product_details_screen.dart';
 import 'package:flutter_auth/Screens/sigin_success/sigin_success_screen.dart';
 import 'package:flutter_auth/Screens/settings/settings_screen.dart';
+import 'package:flutter_auth/Screens/my_orders/orders_screen.dart';
 
 // We use name route
 // All our routes will be available here
@@ -37,6 +38,7 @@ final Map<String, WidgetBuilder> routes = {
   FavScreen.routeName: (context) => FavScreen(),
   AccountScreen.routeName: (context) => AccountScreen(),
   SettingsScreen.routeName: (context) => SettingsScreen(),
+  OrdersScreen.routeName: (context) => OrdersScreen(),
   CheckoutScreen.routeName: (context) => CheckoutScreen(),
   ProductDetailsScreen.routeName: (context) => ProductDetailsScreen()
 };

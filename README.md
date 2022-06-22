@@ -20,8 +20,6 @@ After the signup or login page process you can start to look up sneaker and if y
 
 => Complete Profile
 
-=> OTP Verification
-
 => Home Page
 
 => Product Details

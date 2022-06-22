@@ -17,7 +17,7 @@ class Body extends StatelessWidget {
             children: [
               SizedBox(height: SizeConfig.screenHeight * 0.04),
               Text(
-                "Account Settings",
+                "My Orders",
                 style: TextStyle(
                   fontSize: getProportionateScreenWidth(22),
                   color: Colors.black,

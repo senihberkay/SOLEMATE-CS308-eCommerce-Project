@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/Screens/my_account/account_screen.dart';
+import 'package:flutter_auth/Screens/my_orders/orders_screen.dart';
 import 'package:flutter_auth/Screens/settings/settings_screen.dart';
 import 'profile_menu.dart';
 import 'profile_pic.dart';
@@ -47,9 +48,18 @@ class Body extends StatelessWidget {
             },
           ),
           ProfileMenu(
-            text: "Help Center",
-            icon: "assets/icons/Question mark.svg",
-            press: () {},
+            text: "My Orders",
+            icon: "assets/icons/purchase.svg",
+            press: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return OrdersScreen();
+                  },
+                ),
+              );
+            },
           ),
           ProfileMenu(
             text: "Log Out",
