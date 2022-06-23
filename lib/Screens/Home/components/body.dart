@@ -18,7 +18,6 @@ class Body extends StatefulWidget {
 }
 
 class _BodyState extends State<Body> {
-
   FirebaseAuth auth = FirebaseAuth.instance;
 
   dynamic data;
@@ -37,12 +36,14 @@ class _BodyState extends State<Body> {
     if (currentUser != null) {
       await currentUser.reload();
     }
-    final CollectionReference collection = FirebaseFirestore.instance.collection('products');
-    await collection.get().then<dynamic>((QuerySnapshot snapshot) async{
+    final CollectionReference collection =
+        FirebaseFirestore.instance.collection('products');
+    await collection.get().then<dynamic>((QuerySnapshot snapshot) async {
       snapshot.docs.forEach((doc) {
         String docID = doc.id;
-        final DocumentReference document = FirebaseFirestore.instance.collection('products').doc(docID);
-        document.get().then<dynamic>((DocumentSnapshot snapshot2) async{
+        final DocumentReference document =
+            FirebaseFirestore.instance.collection('products').doc(docID);
+        document.get().then<dynamic>((DocumentSnapshot snapshot2) async {
           setState(() {
             data = snapshot2.data();
           });
@@ -59,19 +60,17 @@ class _BodyState extends State<Body> {
           String warrantyStatus = data['warrantyStatus'];
 
           Product product = Product(
-            name: name,
-            brand: brand,
-            price: price,
-            //rating: rating,
-            ID: ID,
-            description: description,
-            pictureURLs: pictureURLs,
-            comments: comments,
-            sizesStocks: sizesStocks,
-            distributor: distributor,
-            warrantyStatus: warrantyStatus
-
-          );
+              name: name,
+              brand: brand,
+              price: price,
+              //rating: rating,
+              ID: ID,
+              description: description,
+              pictureURLs: pictureURLs,
+              comments: comments,
+              sizesStocks: sizesStocks,
+              distributor: distributor,
+              warrantyStatus: warrantyStatus);
           setState(() {
             products.add(product);
           });
@@ -84,7 +83,7 @@ class _BodyState extends State<Body> {
     getProducts();
   }
 
- // sonradan eklendi
+  // sonradan eklendi
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -94,7 +93,7 @@ class _BodyState extends State<Body> {
             SizedBox(height: getProportionateScreenHeight(20)),
             const HomeHeader(),
             SizedBox(height: getProportionateScreenWidth(10)),
-            //const DiscountBanner(), // aramızda konuşuruz
+            const DiscountBanner(), // aramızda konuşuruz
             Categories(),
             //SpecialOffers(), //delete
             SizedBox(height: getProportionateScreenWidth(30)),

@@ -25,7 +25,14 @@ class HomeHeader extends StatelessWidget {
               style: TextStyle(
                   fontWeight: FontWeight.bold,
                   color: Colors.blue.withOpacity(0.6),
-                  fontSize: 30),
+                  fontSize: 27),
+              children: const <TextSpan>[
+                TextSpan(
+                    text: 'MATE',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w300,
+                    )),
+              ],
             ),
           ),
           SizedBox(

@@ -27,10 +27,12 @@ class AccountScreen extends StatelessWidget {
   static String routeName = "/account";
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: "Profile",
-      home: Account(),
+    return Scaffold(
+      //debugShowCheckedModeBanner: false,
+      appBar: AppBar(
+        title: Text("Profile"),
+      ),
+      body: Account(),
     );
   }
 }
@@ -135,8 +137,7 @@ class _AccountState extends State<Account> {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20)),
                     onPressed: () {
-                      Navigator.of(context, rootNavigator: true)
-                          .pushNamed(ProfileScreen.routeName);
+                      Navigator.pop(context);
                     },
                     child: Text("CANCEL",
                         style: TextStyle(
