@@ -22,18 +22,26 @@ class HomeHeader extends StatelessWidget {
           RichText(
             text: TextSpan(
               text: 'SOLE',
-              style: TextStyle(fontWeight: FontWeight.bold,color: Colors.blue.withOpacity(0.6), fontSize: 30),
-              children: const <TextSpan>[
-                TextSpan(text: 'MATE',
-                    style: TextStyle(fontWeight: FontWeight.normal,)),
 
-              ],
+              style: TextStyle(fontWeight: FontWeight.bold,color: Colors.blue.withOpacity(0.6), fontSize: 30),
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.blue.withOpacity(0.6),
+                  fontSize: 20),
             ),
           ),
-          SizedBox(width: 10,),
-          SizedBox(width: 10,),
-          SizedBox(width: 10,),
-          SizedBox(width: 10,),
+          SizedBox(
+            width: 10,
+          ),
+          SizedBox(
+            width: 10,
+          ),
+          SizedBox(
+            width: 10,
+          ),
+          SizedBox(
+            width: 10,
+          ),
           IconBtnWithCounter(
             svgSrc: "assets/icons/Cart Icon.svg",
             press: () => Navigator.pushNamed(context, CartScreen.routeName),

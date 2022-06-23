@@ -42,6 +42,6 @@ void main() {
 
     /// You'd also want to be sure that your page is now
     /// present in the screen.
-    expect(find.byType(FavsScreen), findsOneWidget);
+    expect(find.byType(FavScreen), findsOneWidget);
   });
 }
