@@ -77,7 +77,7 @@ class ProductDescription extends StatelessWidget {
             child: Row(
               children: [
                 Text(
-                  "See More Detail",
+                  "See Comments of Product",
                   style: TextStyle(
                       fontWeight: FontWeight.w600,
                       color: kPrimaryColor,

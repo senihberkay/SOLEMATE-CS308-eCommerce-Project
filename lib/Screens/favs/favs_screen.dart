@@ -147,10 +147,14 @@ class _FavScreenState extends State<FavScreen> {
                             ),
                           ],
                         ),
-                      ))))
-          : Center(
-              child: Text("You do not have any favourites currently"),
-            ),
+                      )
+                  )
+          )
+      ) :
+      Center(
+        child: Text("You do not have any favourites yet!"),
+      ),
+
     );
   }
 }
