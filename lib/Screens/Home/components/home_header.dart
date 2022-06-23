@@ -22,12 +22,10 @@ class HomeHeader extends StatelessWidget {
           RichText(
             text: TextSpan(
               text: 'SOLE',
-
-              style: TextStyle(fontWeight: FontWeight.bold,color: Colors.blue.withOpacity(0.6), fontSize: 30),
               style: TextStyle(
                   fontWeight: FontWeight.bold,
                   color: Colors.blue.withOpacity(0.6),
-                  fontSize: 20),
+                  fontSize: 30),
             ),
           ),
           SizedBox(
